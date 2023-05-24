@@ -1,12 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TADS Game</title>
+    <link rel="stylesheet" href="src/styles/main.css">
+    <title>TADS GAME</title>
 </head>
+
 <body>
-    <h1>teste</h1>
+    <section class="content">
+        <h1 class="title">TADS Game</h1>
+
+        <div class="start">
+            <button class="start__button" onclick="iniciarJogo()">Start</button>
+        </div>
+    </section>
+
+
+    <h1>Contador de Palavras</h1>
+    <input type="text" id="entrada" placeholder="Digite palavras aqui" disabled onkeydown="verificarTecla(event)">
+    <p id="resultado"></p>
+
+    <!-- Modal para inserir o nome de usuário -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Informe seu nickname</h2>
+            <input type="text" id="nickName" placeholder="Seu nick name">
+            <button onclick="salvarPontuacao()">Salvar</button>
+        </div>
+    </div>
+
+    <script>
+        // Verifica se há um ranking no localStorage ao carregar a página
+        window.onload = function() {
+            var rankingString = localStorage.getItem("ranking");
+            if (rankingString) {
+                ranking = JSON.parse(rankingString);
+            }
+        };
+    </script>
+    <script src="src/script.js"></script>
 </body>
+
 </html>
