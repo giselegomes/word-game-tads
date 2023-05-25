@@ -1,17 +1,113 @@
 /* fontes */
-@import url('https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Montserrat:wght@100;300;400&family=Oxanium:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Press+Start+2P&display=swap');
 
-/* reset */ 
+
+:root {
+    --background-color: #000814;
+    --yellow: #ffc300;
+    --red: #d62828;
+    --blue: #003566;
+}
+
+/* reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
+    background-color: var(--background-color);
+}
+
+.title {
+    font-family: 'Press Start 2P', cursive;
+    color: var(--yellow);
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 5rem;
+    padding: 2rem 0;
 }
 
 .content .start {
     display: flex;
     justify-content: center;
+}
+
+.start .start__button {
+    border: none;
+    font-size: 2rem;
+    text-transform: uppercase;
+    text-decoration: underline;
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    color: var(--red);
+}
+
+.start__button:hover {
+    font-style: italic;
+}
+
+.content .input {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+.input input {
+    color: #FFF;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    border: 3px solid var(--yellow);
+    padding: 1rem;
+    border-radius: 12px;
+    width: 45vw;
+}
+
+.timer p {
+    text-align: center;
+    color: #FFF;
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.result p {
+    text-align: center;
+    color: #FFF;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.ranking {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 32px;
+}
+
+.ranking h2 {
+    font-size: 2rem;
+    font-family: 'Press Start 2P', cursive;
+    padding: 1rem 0;
+    text-transform: uppercase;
+    color: var(--blue);
+}
+
+.ranking table {
+    color: #FFF;
+}
+
+.ranking table tr th,
+.ranking table tr td {
+    font-family: 'Press Start 2P', cursive;
+    width: 100px;
+    text-align: center;
+    padding: 3px;
+}
+
+.ranking table tr:nth-child(2) {
+    color: var(--yellow);
 }
 
 /* Estilos do modal */
@@ -24,15 +120,24 @@
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.9);
 }
 
-.modal-content {
-    background-color: #fefefe;
+.modal__content {
+    background-color: var(--background-color);
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 300px;
+    border: 2px solid var(--blue);
+    width: 400px;
+    height: 160px;
+    border-radius: 12px;
+    
+}
+
+.modal__content h2 {
+    font-family: 'Press Start 2P', cursive;
+    color: #FFF;
+    text-align: center;
 }
 
 .close {

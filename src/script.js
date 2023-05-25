@@ -1,65 +1,74 @@
-// Array de palavras-alvo
-var palavrasAlvo = ["tecnologia", "computador", "internet", "programação", "software"];
+const words = ["tecnologia", "computador", "internet", "programação", "software"];
 
-var palavrasDigitadas = [];
-var acertos = 0;
-var erros = 0;
-var tempoRestante = 60;
-var intervaloTemporizador;
-var ranking = [];
+let typedWords = [];
+let right = 0;
+let wrong = 0;
+let timeLeft = 60;
+let timerInterval;
+let ranking = [];
 
-function contarPalavras() {
-    var entradaUsuario = document.getElementById("entrada").value; // Obtém a entrada do usuário
-    var palavraAtual = entradaUsuario.trim(); // Remove espaços em branco no início e no fim da palavra
+function countWords() {
+    // pega as entradas do input
+    const inputWord = document.getElementById("entry").value;
 
-    if (palavraAtual !== "") {
-        palavrasDigitadas.push(palavraAtual); // Adiciona a palavra atual ao array de palavras digitadas
-        document.getElementById("entrada").value = ""; // Limpa o campo de entrada
+    // converte para letras minusculas
+    var currentWord = inputWord.trim().toLowerCase();
 
-        if (palavrasAlvo.includes(palavraAtual)) {
-            acertos++;
+    if (currentWord !== "") {
+        // adiciona a palavra do input, num array com as palavras digitadas
+        typedWords.push(currentWord); 
+        // "limpa" o input
+        document.getElementById("entry").value = ""; 
+
+        if (words.includes(currentWord)) {
+            if (!typedWords.slice(0, -1).includes(currentWord)) {
+                right++;
+            } else {
+                wrong++;
+            }
         } else {
-            erros++;
+            wrong++;
         }
     }
 
-    atualizarResultado();
+    updateResult();
 }
 
-function verificarTecla(event) {
+function checkKey(event) {
     if (event.keyCode === 13) {
-        event.preventDefault(); // Impede o comportamento padrão de avançar para a próxima linha
-        contarPalavras();
+        // Impede o comportamento padrão de avançar para a próxima linha
+        event.preventDefault(); 
+        countWords();
     }
 }
 
 function iniciarJogo() {
-    palavrasDigitadas = [];
-    acertos = 0;
-    erros = 0;
-    tempoRestante = 10;
-    document.getElementById("entrada").disabled = false;
-    document.getElementById("entrada").value = "";
-    document.getElementById("resultado").innerHTML = "";
-    document.getElementById("entrada").focus();
+    typedWords = [];
+    right = 0;
+    wrong = 0;
+    timeLeft = 5;
+    document.getElementById("entry").disabled = false;
+    document.getElementById("entry").value = "";
+    document.getElementById("result").innerHTML = "";
+    document.getElementById("entry").focus();
 
-    clearInterval(intervaloTemporizador);
-    intervaloTemporizador = setInterval(atualizarTemporizador, 500);
+    clearInterval(timerInterval);
+    timerInterval = setInterval(atualizarTemporizador, 1000);
 }
 
 function atualizarTemporizador() {
-    tempoRestante--;
-    document.getElementById("resultado").innerHTML = "Tempo restante: " + tempoRestante + "s";
+    timeLeft--;
+    document.getElementById("timer").innerHTML = "Tempo restante: " + timeLeft + "s";
 
-    if (tempoRestante <= 0) {
-        clearInterval(intervaloTemporizador);
-        document.getElementById("entrada").disabled = true;
+    if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        document.getElementById("entry").disabled = true;
         mostrarModal();
     }
 }
 
-function atualizarResultado() {
-    document.getElementById("resultado").innerHTML = "Você acertou " + acertos + " palavra(s) e errou " + erros + " palavra(s).";
+function updateResult() {
+    document.getElementById("result").innerHTML = "acertos: " + right + " erros: " + wrong ;
 }
 
 function mostrarModal() {
@@ -80,7 +89,7 @@ function mostrarModal() {
 
 function salvarPontuacao() {
     var nickName = document.getElementById("nickName").value;
-    var pontuacao = acertos;
+    var pontuacao = right;
 
     ranking.push({ nickName: nickName, pontuacao: pontuacao });
     ranking.sort(function(a, b) {
@@ -92,13 +101,22 @@ function salvarPontuacao() {
 }
 
 function exibirRanking() {
-    var resultado = "Ranking de Pontuações:<br>";
+    var tabela = "<table><h2>Ranking</h2>";
+    tabela += "<tr><th></th></th><th>Name</th><th>Score</th></tr>";
+
     for (var i = 0; i < ranking.length; i++) {
-        resultado += (i + 1) + ". " + ranking[i].nickName + " - Pontuação: " + ranking[i].pontuacao + "<br>";
+        tabela += "<tr>";
+        tabela += "<td>" + "#" + (i + 1) + "</td>";
+        tabela += "<td>" + ranking[i].nickName + "</td>";
+        tabela += "<td>" + ranking[i].pontuacao + "</td>";
+        tabela += "</tr>";
     }
 
-    document.getElementById("resultado").innerHTML = resultado;
+    tabela += "</table>";
+
+    document.getElementById("ranking").innerHTML = tabela;
 }
+
 
 function salvarNoLocalStorage() {
     var rankingString = JSON.stringify(ranking);

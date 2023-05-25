@@ -16,22 +16,35 @@
         <div class="start">
             <button class="start__button" onclick="iniciarJogo()">Start</button>
         </div>
+
+        <div class="input">
+            <input type="text" id="entry" placeholder="..." disabled onkeydown="checkKey(event)">
+        </div>
+
+        <div class="timer">
+            <p id="timer"></p>
+        </div>
+
+        <div class="result">
+            <p id="result"></p>
+        </div>
+
+        <div class="ranking" id="ranking">
+        </div>
     </section>
 
-
-    <h1>Contador de Palavras</h1>
-    <input type="text" id="entrada" placeholder="Digite palavras aqui" disabled onkeydown="verificarTecla(event)">
-    <p id="resultado"></p>
-
-    <!-- Modal para inserir o nome de usuário -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
+    <!-- Modal para inserir o nickname -->
+    <section id="modal" class="modal">
+        <div class="modal__content">
             <span class="close">&times;</span>
-            <h2>Informe seu nickname</h2>
-            <input type="text" id="nickName" placeholder="Seu nick name">
-            <button onclick="salvarPontuacao()">Salvar</button>
+            <h2>TIME OUT!</h2>
+
+            <div>
+                <input type="text" id="nickName" required>
+                <button onclick="salvarPontuacao()">save</button>
+            </div>
         </div>
-    </div>
+    </section>
 
     <script>
         // Verifica se há um ranking no localStorage ao carregar a página
