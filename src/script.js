@@ -63,7 +63,7 @@ function atualizarTemporizador() {
     if (timeLeft <= 0) {
         clearInterval(timerInterval);
         document.getElementById("entry").disabled = true;
-        mostrarModal();
+        showModal();
     }
 }
 
@@ -71,9 +71,8 @@ function updateResult() {
     document.getElementById("result").innerHTML = "acertos: " + right + " erros: " + wrong ;
 }
 
-function mostrarModal() {
+function showModal() {
     var modal = document.getElementById("modal");
-    var span = document.getElementsByClassName("close")[0];
     modal.style.display = "block";
 
     span.onclick = function() {
@@ -87,7 +86,8 @@ function mostrarModal() {
     };
 }
 
-function salvarPontuacao() {
+function saveScore() {
+    modal.style.display = "none";
     var nickName = document.getElementById("nickName").value;
     var pontuacao = right;
 
@@ -96,11 +96,11 @@ function salvarPontuacao() {
         return b.pontuacao - a.pontuacao;
     });
 
-    exibirRanking();
+    showRanking();
     salvarNoLocalStorage();
 }
 
-function exibirRanking() {
+function showRanking() {
     var tabela = "<table><h2>Ranking</h2>";
     tabela += "<tr><th></th></th><th>Name</th><th>Score</th></tr>";
 

@@ -14,12 +14,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
     background-color: var(--background-color);
+    font-family: 'Press Start 2P', cursive;
 }
 
 .title {
-    font-family: 'Press Start 2P', cursive;
     color: var(--yellow);
     text-align: center;
     text-transform: uppercase;
@@ -38,7 +37,6 @@
     text-transform: uppercase;
     text-decoration: underline;
     cursor: pointer;
-    font-family: 'Press Start 2P', cursive;
     color: var(--red);
 }
 
@@ -67,7 +65,6 @@
     color: #FFF;
     font-size: 2rem;
     text-transform: uppercase;
-    font-family: 'Press Start 2P', cursive;
 }
 
 .result p {
@@ -75,7 +72,6 @@
     color: #FFF;
     font-size: 1rem;
     text-transform: uppercase;
-    font-family: 'Press Start 2P', cursive;
 }
 
 .ranking {
@@ -88,7 +84,6 @@
 
 .ranking h2 {
     font-size: 2rem;
-    font-family: 'Press Start 2P', cursive;
     padding: 1rem 0;
     text-transform: uppercase;
     color: var(--blue);
@@ -100,7 +95,6 @@
 
 .ranking table tr th,
 .ranking table tr td {
-    font-family: 'Press Start 2P', cursive;
     width: 100px;
     text-align: center;
     padding: 3px;
@@ -135,27 +129,25 @@
 }
 
 .modal__content h2 {
-    font-family: 'Press Start 2P', cursive;
     color: #FFF;
     text-align: center;
 }
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
+.modal__content input {
+    color: #FFF;
+    border: 2px solid var(--yellow);
+    width: 270px;
+    height: 44px;
+    margin-top: 22px;
+    border-radius: 7px;
+    padding: 12px;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
+.modal__content button {
+    background: var(--yellow);
+    border: none;
+    width: 70px;
+    height: 44px;
+    border-radius: 7px;
     cursor: pointer;
-}
-
-/* Estilos adicionais */
-button {
-    margin-top: 10px;
 }
