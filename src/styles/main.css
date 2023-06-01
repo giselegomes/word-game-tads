@@ -1,6 +1,8 @@
-/* fontes */
-@import url('https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Press+Start+2P&display=swap');
-
+/* fonte */
+@font-face {
+    font-family: "Press Start";
+    src: url("../fonts/PressStart2P-Regular.ttf") format("truetype");
+}
 
 :root {
     --background-color: #000814;
@@ -15,7 +17,7 @@
     padding: 0;
     box-sizing: border-box;
     background-color: var(--background-color);
-    font-family: 'Press Start 2P', cursive;
+    font-family: "Press Start", sans-serif;
 }
 
 .title {
