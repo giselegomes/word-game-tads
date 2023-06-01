@@ -99,30 +99,30 @@ const words = [
     "SDK",
     "serviços web",
     "stack overflow"
- ];
+];
 
 let typedWords = [];
 let right = 0;
 let wrong = 0;
-let timeLeft = 20;
+let timeLeft = 60;
 let timerInterval;
 let ranking = [];
 
 function countWords() {
-    // pega as entradas do input
+    // Pega as entradas do input
     const inputWord = document.getElementById("entry").value;
 
-    // converte para letras minusculas
-    var currentWord = inputWord.trim().toLowerCase();
+    // Converte para letras minúsculas
+    const currentWord = inputWord.trim().toLowerCase();
 
     if (currentWord !== "") {
-        // adiciona a palavra do input, num array com as palavras digitadas
-        typedWords.push(currentWord); 
-        // "limpa" o input
-        document.getElementById("entry").value = ""; 
+        // Adiciona a palavra do input em um array com as palavras digitadas
+        typedWords.push(currentWord);
+        // "Limpa" o input
+        document.getElementById("entry").value = "";
 
-        if (words.includes(currentWord)) {
-            if (!typedWords.slice(0, -1).includes(currentWord)) {
+        if (words.map(word => word.toLowerCase().replace(/\s/g, "")).includes(currentWord.toLowerCase().replace(/\s/g, ""))) {
+            if (!typedWords.slice(0, -1).map(word => word.toLowerCase().replace(/\s/g, "")).includes(currentWord.toLowerCase().replace(/\s/g, ""))) {
                 right++;
             } else {
                 wrong++;
@@ -130,6 +130,8 @@ function countWords() {
         } else {
             wrong++;
         }
+        
+        
     }
 
     updateResult();
@@ -138,7 +140,7 @@ function countWords() {
 function checkKey(event) {
     if (event.keyCode === 13) {
         // Impede o comportamento padrão de avançar para a próxima linha
-        event.preventDefault(); 
+        event.preventDefault();
         countWords();
     }
 }
@@ -147,7 +149,7 @@ function iniciarJogo() {
     typedWords = [];
     right = 0;
     wrong = 0;
-    timeLeft = 20;
+    timeLeft = 60;
     document.getElementById("entry").disabled = false;
     document.getElementById("entry").value = "";
     document.getElementById("result").innerHTML = "";
@@ -169,18 +171,18 @@ function atualizarTemporizador() {
 }
 
 function updateResult() {
-    document.getElementById("result").innerHTML = "acertos: " + right + " erros: " + wrong ;
+    document.getElementById("result").innerHTML = "acertos: " + right + " erros: " + wrong;
 }
 
 function showModal() {
     var modal = document.getElementById("modal");
     modal.style.display = "block";
 
-    span.onclick = function() {
+    span.onclick = function () {
         modal.style.display = "none";
     };
 
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
@@ -193,7 +195,7 @@ function saveScore() {
     var pontuacao = right;
 
     ranking.push({ nickName: nickName, pontuacao: pontuacao });
-    ranking.sort(function(a, b) {
+    ranking.sort(function (a, b) {
         return b.pontuacao - a.pontuacao;
     });
 
